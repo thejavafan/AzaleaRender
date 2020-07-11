@@ -1,4 +1,4 @@
 # AzaleaRender
 
 #### Description
-learn opengl and try make a build engine
+learn opengl and try make a render engine
