@@ -88,7 +88,6 @@ void OnCloseWindow()
 	ReleaseMutex(mutex);
 	CloseHandle(mutex);
 	CloseHandle(RenderThread);
-	//ReleaseApplication();
 	ShowCursor(true);
 	wglMakeCurrent(NULL, NULL);
 	wglDeleteContext(hrc);
