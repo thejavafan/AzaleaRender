@@ -16,8 +16,11 @@ class Shader
 	void SetBool(const string& key, bool value) const;
 	void SetInt(const string& key, int value) const;
 	void SetFloat(const string& key, float value) const;
+	void SetVec2(const std::string& key, const glm::vec2& value) const;
+	void SetVec2(const std::string& name, float x, float y) const;
 	void SetMat4(const std::string& key, const glm::mat4& value) const;
 	void SetVec3(const std::string& key, const glm::vec3& value) const;
+	void SetVec3(const std::string& name, float x, float y, float z) const;
 
 private:
 	string ReadShader(const string path);

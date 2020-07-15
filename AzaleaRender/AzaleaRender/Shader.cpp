@@ -25,7 +25,7 @@ Shader::Shader(const string vert, const string frag, const string geometry)
 	if (!success)
 	{
 		glGetShaderInfoLog(vertexShader, 512, NULL, infoLog);
-		printf("¶¥µãshader±àÒëÊ§°Ü£º%s\n", infoLog);
+		printf("¶¥µã×ÅÉ«Æ÷±àÒëÊ§°Ü£º%s\n", infoLog);
 		return;
 	}
 
@@ -37,7 +37,7 @@ Shader::Shader(const string vert, const string frag, const string geometry)
 	if (!success)
 	{
 		glGetShaderInfoLog(fragmentShader, 512, NULL, infoLog);
-		printf("Æ¬¶Îshader±àÒëÊ§°Ü£º%s\n", infoLog);
+		printf("Æ¬¶Î×ÅÉ«Æ÷±àÒëÊ§°Ü£º%s\n", infoLog);
 		return;
 	}
 
@@ -64,7 +64,7 @@ Shader::Shader(const string vert, const string frag, const string geometry)
 
 	if (needGeometry)
 	{
-		glAttachShader(ID, geometryShader);
+		glAttachShader(ID, geometryShader); 
 	}
 	glLinkProgram(ID);
 
@@ -72,7 +72,7 @@ Shader::Shader(const string vert, const string frag, const string geometry)
 	if (!success)
 	{
 		glGetProgramInfoLog(ID, 512, NULL, infoLog);
-		printf("ShaderÁ´½ÓÊ§°Ü£º%s\n", infoLog);
+		printf("×ÅÉ«Æ÷Á´½ÓÊ§°Ü£º%s\n", infoLog);
 		return;
 	}
 
@@ -109,6 +109,15 @@ void Shader::SetFloat(const string& key, float value) const
 	glUniform1f(glGetUniformLocation(ID, key.c_str()), value);
 }
 
+void Shader::SetVec2(const std::string& key, const glm::vec2& value) const
+{
+	glUniform2fv(glGetUniformLocation(ID, key.c_str()), 1, &value[0]);
+}
+void Shader::SetVec2(const std::string& key, float x, float y) const
+{
+	glUniform2f(glGetUniformLocation(ID, key.c_str()), x, y);
+}
+
 void Shader::SetMat4(const std::string& key, const glm::mat4& value) const
 {
 	glUniformMatrix4fv(glGetUniformLocation(ID, key.c_str()), 1, GL_FALSE, &value[0][0]);
@@ -117,6 +126,11 @@ void Shader::SetMat4(const std::string& key, const glm::mat4& value) const
 void Shader::SetVec3(const std::string& key, const glm::vec3& value) const
 {
 	glUniform3fv(glGetUniformLocation(ID, key.c_str()), 1, &value[0]);
+}
+
+void Shader::SetVec3(const std::string& key, float x, float y, float z) const
+{
+	glUniform3f(glGetUniformLocation(ID, key.c_str()), x, y, z);
 }
 
 std::string Shader::ReadShader(const string path)
